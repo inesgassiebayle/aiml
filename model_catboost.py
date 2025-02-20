@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
 from datasets import load_dataset
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import f1_score
-from xgboost import XGBClassifier
 from catboost import CatBoostClassifier
 
 # Load Data
