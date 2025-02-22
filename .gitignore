@@ -1,0 +1,7 @@
+# Ignore all CSV files
+*.csv
+
+# Ignore catboost_info folder
+catboost_info/
+
+
