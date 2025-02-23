@@ -1,7 +1,5 @@
 from datasets import load_dataset
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import f1_score
@@ -70,4 +68,16 @@ print(f"Validation F1 Score: {val_f1:.4f}")
 y_test_pred = xgb_model.predict(X_test_scaled)
 y_test_pred_labels = y_encoder.inverse_transform(y_test_pred)
 
+# Extract the IDs from the original test data
+df_test = test["train"].to_pandas()  # Get the original test DataFrame
+ids = df_test["ID"]
 
+# Create a DataFrame for submission with the IDs and predicted labels
+submission_df = pd.DataFrame({
+    "ID": ids,
+    "CLASE": y_test_pred_labels
+})
+
+# Save the submission DataFrame to a CSV file
+submission_df.to_csv("submission_xgboost.csv", index=False)
+print("Submission saved as submission_xgboost.csv")
