@@ -289,7 +289,7 @@ submission_df = pd.DataFrame({
 })
 
 # Save the predictions to a CSV file
-submission_filename = f"submission_catboost_{datetime.now().strftime("%Y%m%d_%H%M%S")}.csv"
+submission_filename = f"submission_catboost_{datetime.now()}.csv"
 submission_df.to_csv(submission_filename, index=False)
 
 

@@ -2,19 +2,15 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-import plotly.express as px
-import json
-import time
-import pickle
 from datetime import datetime
 from datasets import load_dataset
-from sklearn.preprocessing import StandardScaler, LabelEncoder
-from sklearn.model_selection import train_test_split, RandomizedSearchCV
-from sklearn.metrics import f1_score, make_scorer
-from sklearn.utils import compute_class_weight
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import f1_score
 from sklearn.cluster import KMeans
 from scipy.spatial.distance import cdist
 from catboost import CatBoostClassifier
+import optuna
 
 # Load Data
 print("Loading data sets...")
@@ -175,6 +171,50 @@ def remove_highly_correlated_features(df, features, threshold=0.90, plot=True):
     return list(selected_features), list(dropped_features)
 
 
+def plot_feature_importance(model, feature_names, prefix=None, figsize=(15, 10)):
+    # Get feature importance
+    feature_importances = model.get_feature_importance()
+
+    # Convert to NumPy arrays
+    feature_names = np.array(feature_names)
+
+    # Filter by prefix if provided
+    if prefix:
+        mask = np.char.startswith(feature_names, prefix)
+        filtered_features = feature_names[mask]
+        filtered_importances = feature_importances[mask]
+    else:
+        filtered_features = feature_names
+        filtered_importances = feature_importances
+
+    # Sort by importance (descending)
+    sorted_idx = np.argsort(filtered_importances)[::-1]
+    sorted_features = filtered_features[sorted_idx]
+    sorted_importances = filtered_importances[sorted_idx]
+
+    # Print features as a list (copy-paste friendly)
+    if len(sorted_features) > 0:
+        feature_list_str = ", ".join(f"'{feature}'" for feature in sorted_features)
+        print(f"Features with prefix '{prefix}':")
+        print(f"[{feature_list_str}]")  # Prints as a valid Python list
+
+        # Plot
+        plt.figure(figsize=figsize)
+        sns.barplot(x=sorted_importances, y=sorted_features, hue=sorted_features, palette="viridis", legend=False)
+        plt.xlabel("Feature Importance")
+        plt.ylabel("Feature")
+        plt.title(f"Feature Importance {f'for Features Starting with {prefix}' if prefix else ''}")
+        plt.show()
+    else:
+        print(f"No features found with prefix '{prefix}'.")
+
+
+# Check correlation of the original matrix
+corr_matrix = X_train_preprocessed.corr().abs()
+plt.figure(figsize=(16, 15))
+sns.heatmap(corr_matrix, cmap="coolwarm", annot=False, fmt=".2f")
+plt.title("Correlation Matrix - Original Features")
+plt.show()
 
 original_features = [feature for feature in X_train_preprocessed.columns if feature.startswith(("Q_", "GEOM_"))]
 print(original_features)
@@ -183,54 +223,48 @@ reduced_features, dropped_features = remove_highly_correlated_features(X_train_p
 
 selected_features = set(X_train_preprocessed.columns)
 print(f'Antes de reducir: {len(selected_features)}')
+selected_features -= set(dropped_features)
 selected_features = list(selected_features)
 print(f'Despues de reducir: {len(selected_features)}')
 
 
-# Define hyperparameter search space
-param_dist = {
-    "iterations": [1000, 1500, 2000],
-    "learning_rate": [0.01, 0.05, 0.1],
-    "depth": [6, 8, 10],
-    "l2_leaf_reg": [1, 3, 5, 7, 9],
-    "border_count": [32, 64, 128],
-    "bagging_temperature": [0.5, 1, 2],
-    "min_data_in_leaf": [1, 5, 10, 20]
-}
+def objective(trial):
 
-# Initialize CatBoost model
-catboost = CatBoostClassifier(
-    eval_metric="TotalF1",
-    objective="MultiClass",
-    random_seed=42,
-    verbose=100
-)
+    params = {
+        "iterations": trial.suggest_categorical("iterations", [1000, 1500, 2000]),
+        "learning_rate": trial.suggest_float("learning_rate", 0.01, 0.1, log=True),
+        "depth": trial.suggest_int("depth", 6, 10),
+        "l2_leaf_reg": trial.suggest_int("l2_leaf_reg", 1, 9),
+        "border_count": trial.suggest_categorical("border_count", [32, 64, 128]),
+        "bagging_temperature": trial.suggest_float("bagging_temperature", 0.5, 2.0),
+        "min_data_in_leaf": trial.suggest_int("min_data_in_leaf", 1, 20),
+        "eval_metric": "TotalF1",
+        "objective": "MultiClass",
+        "random_seed": 42,
+        "verbose": 0,
+        "thread_count": 10
+    }
 
-# Perform Randomized Search
-random_search = RandomizedSearchCV(
-    catboost,
-    param_distributions=param_dist,
-    scoring="f1_macro",
-    n_iter=20,  # Number of random samples
-    cv=5,  # 5-fold cross-validation
-    verbose=2,
-    random_state=42
-)
+    model = CatBoostClassifier(**params)
+    model.fit(X_train_preprocessed[selected_features], y_train_final, verbose=0)
 
-# Fit Randomized Search
-random_search.fit(X_train_preprocessed[selected_features], y_train_final)
+    y_val_pred = model.predict(X_val_preprocessed[selected_features])
+    f1 = f1_score(y_val, y_val_pred, average="macro")
 
-# Get best parameters
-best_params = random_search.best_params_
-print("Best Hyperparameters:", best_params)
+    return f1
 
-# Use best parameters to retrain model
+# Create Optuna study
+study = optuna.create_study(direction="maximize")
+study.optimize(objective, n_trials=50)
+
+# Best hyperparameters
+print("Best Hyperparameters:", study.best_params)
+print("Best F1 Score:", study.best_value)
+
+# Train the best model
+best_params = study.best_params
 model = CatBoostClassifier(**best_params)
 model.fit(X_train_preprocessed[selected_features], y_train_final)
-
-# Save model
-with open("catboost_model_3.pkl", "wb") as f:
-    pickle.dump(model, f)
 
 # Evaluate on Validation Set
 y_val_pred = model.predict(X_val_preprocessed[selected_features])
