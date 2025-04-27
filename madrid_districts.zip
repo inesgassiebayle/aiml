@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" class=""><head>
+	<!--[if IE 8]>         <html class="no-js ie8"> <![endif]-->
+	<!--[if gt IE 8]><!-->  <!--<![endif]-->
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>Portal de Datos abiertos - Página no encontrado </title>
+
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+
+<script type="text/javascript" src="/FwFront/portal_egob/js/webtrends.js"></script>
+
+				
+	<link href="/assets/css/vendor.css" rel="stylesheet">
+    <link href="/assets/css/ayuntamiento-madrid-bootstrap.min.css" rel="stylesheet">
+
+		<link media="screen,print" href="/assets/css/ayuntamiento-madrid-orange.min.css" rel="STYLESHEET" type="text/css">
+	    <!--[if lt IE 9]>
+	    <link rel="stylesheet" href="/assets/css/ayuntamiento-madrid-orange_ie8.min.css">
+	    <![endif]-->
+	
+	<link href="/assets/css/ayuntamiento-madrid-custom.css" rel="stylesheet">
+   
+	<link media="print" href="/assets/css/ayuntamiento-madrid-print.min.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="/assets/js/vendorIE8.js"></script>
+    <![endif]-->
+	
+    <script type="text/javascript">
+        var aytmad = {};
+        aytmad.config = {
+            routes:{
+                menu:'/portal/site/egob/menuitem.f293ad11117391cd5e1c3a40a8a409a0/?vgnextoid=affc351a357d0510VgnVCM1000008a4a900aRCRD&amp;site=egob&amp;preview=true',
+                calendar:'',
+                taxonomias:''
+            },
+	        constants:{	        	
+	            numVisibleLinks:3,
+	            API_KEY: ""
+	        }
+        };
+    </script>
+	<script src="/assets/js/locale/i18n_es.js" type="text/javascript"></script>
+</head>
+
+<body>
+	<a id="top"></a>	
+	<div id="wrapper">
+
+<header class="header" style="background-image: url('/new/img/General_1400X351.jpg');">
+	<div class="container">
+
+		<div class="brand">
+			<div class="row">
+				<div class="col-md-8">
+					<h1><a href="/portal/site/egob" accesskey="T">Portal de datos abiertos del Ayuntamiento de Madrid</a></h1>
+				</div>
+				<div class="col-md-4 logo">
+					<a href="https://www.madrid.es" accesskey="I"><img src="/assets/images/logo-madrid.png" alt="" /></a>
+				</div>
+			</div>
+		</div>
+
+        <div class="navigation-bar" id="navbar">
+            <div class="row">
+				<div class="col-md-3 col-sm-12">
+					<div class="header-logo"><a href="#">
+						<span class="text-tm sr-only">Portal de acceso a los datos del gobierno municipal</span>
+						<img src="/FwFront/portal_egob/new/img/portal_logo_h.png" alt="" class="logo_desktop data" />
+						<img src="/FwFront/portal_egob/new/img/ico-menu-tm.png" alt="" class="logo_tm" /></a>
+					</div>
+				</div>
+				<div class="col-md-9 col-sm-12">
+					<div class="search-toggle-cont">
+						<form class="searcher-form" id="searcher-form" action="/sites/v/index.jsp">
+							<input name="vgnextoid" value="20d612b9ace9f310VgnVCM100000171f5a0aRCRD" type="hidden">
+							<input name="btn1" value="buscar" type="hidden">								
+							<div class="row">
+								<div class="col-xs-10">
+									<label for="search-field">
+										<span class="placeholder">¿Qué estás buscando?</span>
+										<input type="text" class="searcher-item" name="text" id="search-field" />
+									</label>
+								</div>
+								<div class="col-xs-2">
+									<button type="submit" class="searcher-link"><span>Buscar</span></button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+            </div>
+        </div>
+		
+		<div class="section-cont">
+    		<img id="section-image" class="section-image" alt="" src="/new/img/General_1400X351.jpg">   
+        	
+    		
+	    		<div class="section-name">
+	        		<span class="section-name-title">
+	    				datos.madrid.es		     			
+	    			</span>
+	        	</div>
+
+		</div>
+			<h2 class="section-subname visible-xs-block"><span class="section-subname-title">Contenido no disponible</span></h2>
+	</div>
+</header>
+
+ 	<div class="bg-fluid1">
+		<div class="container">
+			
+			
+				
+			<div class="row">
+				<ul class="breadcrumbs hidden-xs">
+				
+					<li>
+		        		<a href="/portal/site/egob" class="bc-item bc-item-home" title="Portal de Datos abiertos"><span>Home</span></a>
+		        	</li>
+								<li>
+									<span class="bc-item">Contenido no disponible</span>
+								</li>
+
+				</ul>
+			</div>            
+		</div>
+	</div>
+
+  		<div class="content">
+	  		<a id="content"></a>		
+				<div class="bg-fluid0">  
+
+					<div class="container ">
+						<div class="row">
+							
+							<div class="col-md-12">
+								<main class="mainContent">
+									<div class="nofluid ">    
+										<h2 class="summary-title hidden">Contenido no disponible</h2>
+									</div>
+									<div class="detalle"> 					
+										<div class="nofluid"> 
+											<div class="info-seccion">
+												<div class="modal-alert modal-error">
+							
+													<h3 class="title-modal">Contenido no disponible</h3>
+														<p>Lo sentimos, <strong>la página que ha solicitado no existe o ha sido borrada del servidor</strong>.</p>
+														<p> Puede tratar de encontrar la página que busca desde la página de inicio del portal o utilizando el buscador. </p>
+														<p>Para realizar preguntas o sugerencias visite la página de Contacto. </p>
+														<p>Si tiene dudas sobre cómo navegar en visite la zona de Ayuda.</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</main>
+							</div>
+						</div>
+					</div>
+				</div>			
+			
+		</div>
+  		
+
+		
+<footer class="footer hidden-print">
+    
+			<div class="bg-fluid2">			
+				<div class="container">
+					<div class="row footer-logo nofluid">
+						<div class="col-sm-8 col-xs-12">
+							
+							
+							<div class="col-md-6 col-sm-7 fl-image">
+								
+
+									<a class="fl-link" href="/portal/site/egob">
+										<span class="text-hide">Portal de Datos abiertos</span>
+										<img class="logo_tm" src="/assets/images/logo-madrid-alpha.png" alt="Ayuntamiento de Madrid">									
+										<img class="logo_desktop" alt="Portal de Datos abiertos" src="/FwFront/portal_egob/img/portal_logo_f.png">
+									</a>
+								
+									<p class="fm-text">Portal dedicado a promover el acceso a los datos del gobierno municipal e impulsar el desarrollo de herramientas creativas para atraer y servir a los ciudadanos de la ciudad de Madrid.</p>
+								
+							</div>
+
+														
+							<div class="col-md-6 col-sm-5 col-xs-12">
+								<ul class="footer-menu row">
+									
+										<li class="col-md-12 col-sm-12">
+										 	<h2 class="fm-item"><a href="/portal/site/egob">En portada</a></h2>
+										 </li>			
+									
+								</ul>
+							</div>
+						</div>
+						
+						<div class="col-sm-4 col-xs-12 last">
+							<div class="collapse-item">
+								<h2 class="fm-title">Otras webs del Ayuntamiento de Madrid</h2>
+								<ul class="fm-level">						
+									
+										<li><a class="fm-item" title="Enlace en nueva ventana: www.madrid.es" target="_blank" href="https://www.madrid.es">www.madrid.es</a></li>										
+									
+										<li><a class="fm-item" title="Enlace en nueva ventana: sede.madrid.es" target="_blank" href="https://sede.mmadrid.es">sede.madrid.es</a></li>										
+									
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="bg-fluid4">
+				<div class="container">
+					<div class="row footer-copy nofluid">
+						<div class="col-xs-12 col-sm-3">
+							<span class="fc-title">Ayuntamiento de Madrid, 2016.</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</footer>
+
+
+	</div>	
+
+	<script src="/assets/js/vendor.min.js" type="text/javascript"></script>
+	<script src="/assets/js/ayuntamiento-madrid-fwk.min.js" type="text/javascript"></script>
+
+</body></html>
